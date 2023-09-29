@@ -6,10 +6,14 @@ createApp({
       dischi: [],
     };
   },
-
+  methods: {
+    getDisks() {
+      axios.get("./server.php").then((response) => {
+        this.dischi = response.data;
+      });
+    },
+  },
   mounted() {
-    axios.get("./server.php").then((response) => {
-      this.dischi = response.data;
-    });
+    this.getDisks();
   },
 }).mount("#app");
